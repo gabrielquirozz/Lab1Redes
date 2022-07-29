@@ -4,6 +4,7 @@ import bitarray
 # take the server name and port name
 host = 'local host'
 port = 5000
+ba = bitarray.bitarray()
 
 # create a socket at server side
 # using TCP / IP protocol
@@ -28,7 +29,12 @@ print("CONNECTION FROM:", str(addr))
 # send message to the client after
 # encoding into binary string
 msg = input("INGRESE EL MENSAJE: \n")
-c.send(msg.encode())
+ba.frombytes(msg.encode('utf-8'))
+c.send(ba)
+
+#Receiver
+#bitarray.bitarray(ba).tobytes().decode('utf-8')
+
 
 # disconnect the server
 c.close()
