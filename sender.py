@@ -1,5 +1,6 @@
 import socket
 import bitarray
+from CRC32 import crc32
 
 # take the server name and port name
 host = 'local host'
@@ -30,6 +31,7 @@ print("CONNECTION FROM:", str(addr))
 # encoding into binary string
 msg = input("INGRESE EL MENSAJE: \n")
 ba.frombytes(msg.encode('utf-8'))
+#crc32(ba)
 c.send(ba)
 
 #Receiver
