@@ -1,13 +1,14 @@
 import socket
 import bitarray
-from CRC32 import crc32
 import numpy as np
 from fletcher_checksum import fletcher32
+from CRC32 import crc32
 
 def ruido(msg):
 	ruido = True
 	noRuido = False
-	a = np.random.choice([ruido,noRuido], size=100, p=[0.1,0.9])
+	a = np.random.choice([ruido,noRuido], size=1, p=[0.01,0.99])
+	print(a)
 	if True in a:
 		print("RUIDO")
 		if msg[0] == 0:
@@ -48,8 +49,10 @@ print("CONNECTION FROM:", str(addr))
 # encoding into binary string
 msg = input("INGRESE EL MENSAJE: \n")
 ba.frombytes(msg.encode('utf-8'))
+
+
 ruido(ba)
-#crc32(ba)
+print(ba)
 c.send(ba)
 
 #Receiver

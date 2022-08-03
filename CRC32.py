@@ -13,6 +13,6 @@ def crc32(string):
     value = 0xffffffff
 
     for ch in string:
-        value = table[(ord(ch) ^ value) & 0x000000ff] ^ (value >> 8)
+        value = table[(ord(str(ch)) ^ value) & 0x000000ff] ^ (value >> 8)
 
     return hex(value)
