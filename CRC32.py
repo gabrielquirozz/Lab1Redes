@@ -1,5 +1,3 @@
-
-#Created by Huseyin Meric Yigit
 table = []
 for byte in range(256):
     crc = 0
