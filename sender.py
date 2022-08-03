@@ -3,18 +3,20 @@ import bitarray
 import numpy as np
 from fletcher_checksum import fletcher32
 from CRC32 import crc32
+import random
 
 def ruido(msg):
 	ruido = True
 	noRuido = False
-	a = np.random.choice([ruido,noRuido], size=1, p=[0.01,0.99])
+	a = np.random.choice([ruido,noRuido], size=1, p=[1,0])
 	print(a)
 	if True in a:
 		print("RUIDO")
-		if msg[0] == 0:
-			msg[0] = 1
+		i = random.randint(0, len(msg) -1)
+		if msg[i] == 0:
+			msg[i] = 1
 		else:
-			msg[0] = 0
+			msg[i] = 0
 	else:
 		print("NO RUIDO")
 	
@@ -51,8 +53,8 @@ msg = input("INGRESE EL MENSAJE: \n")
 ba.frombytes(msg.encode('utf-8'))
 
 
-ruido(ba)
 print(ba)
+ruido(ba)
 c.send(ba)
 
 #Receiver
