@@ -2,6 +2,7 @@ import socket
 import bitarray
 from CRC32 import crc32
 import numpy as np
+from fletcher_checksum import fletcher32
 
 def ruido(msg):
 	ruido = True
@@ -16,6 +17,7 @@ def ruido(msg):
 	else:
 		print("NO RUIDO")
 	
+
 
 # take the server name and port name
 host = 'local host'
