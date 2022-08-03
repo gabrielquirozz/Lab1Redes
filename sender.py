@@ -1,6 +1,21 @@
 import socket
 import bitarray
 from CRC32 import crc32
+import numpy as np
+
+def ruido(msg):
+	ruido = True
+	noRuido = False
+	a = np.random.choice([ruido,noRuido], size=100, p=[0.1,0.9])
+	if True in a:
+		print("RUIDO")
+		if msg[0] == 0:
+			msg[0] = 1
+		else:
+			msg[0] = 0
+	else:
+		print("NO RUIDO")
+	
 
 # take the server name and port name
 host = 'local host'
@@ -31,6 +46,7 @@ print("CONNECTION FROM:", str(addr))
 # encoding into binary string
 msg = input("INGRESE EL MENSAJE: \n")
 ba.frombytes(msg.encode('utf-8'))
+ruido(ba)
 #crc32(ba)
 c.send(ba)
 
