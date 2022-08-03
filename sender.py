@@ -1,6 +1,7 @@
 import socket
 import bitarray
 from CRC32 import crc32
+from fletcher_checksum import fletcher32
 
 # take the server name and port name
 host = 'local host'
