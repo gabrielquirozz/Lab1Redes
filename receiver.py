@@ -19,15 +19,29 @@ s = socket.socket(socket.AF_INET,
 # number on local computer.
 s.connect(('127.0.0.1', port))
 
+prueba1 = s.recv(4096)
+
 # receive message string from
 # server, at a time 1024 B
-msg = s.recv(4096)
+try:
+	msg = s.recv(4096)
+except Exception:
+	print("NO SE HA PODIDO DECODIFICAR")
+
 ba.frombytes(msg)
 print("Mensaje codificado: "+ str(ba))
-crc32(ba)
-fletcher32(str(ba), len(ba))
+#crc32(ba)
+prueba2 = fletcher32(str(ba), len(ba))
+print(prueba1.decode())
+print(prueba2)
 # repeat as long as message
 # string are not empty
+
+if(str(prueba1.decode()) == str(prueba2)):
+	print("PRUEBA APROBADA")
+else:
+	print("PRUEBA DESAPROBADA")
+
 while msg:
 	print('Mensaje decodificado: ' + msg.decode())
 	msg = s.recv(4096)

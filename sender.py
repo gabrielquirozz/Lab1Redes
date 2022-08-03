@@ -8,8 +8,7 @@ import random
 def ruido(msg):
 	ruido = True
 	noRuido = False
-	a = np.random.choice([ruido,noRuido], size=1, p=[1,0])
-	print(a)
+	a = np.random.choice([ruido,noRuido], size=1, p=[0.25,0.75])
 	if True in a:
 		print("RUIDO")
 		i = random.randint(0, len(msg) -1)
@@ -54,6 +53,10 @@ ba.frombytes(msg.encode('utf-8'))
 
 
 print(ba)
+#crc32(ba)
+prueba1 = fletcher32(str(ba), len(ba))
+print("{:08X}".format(prueba1))
+c.send(str(prueba1).encode())
 ruido(ba)
 c.send(ba)
 
